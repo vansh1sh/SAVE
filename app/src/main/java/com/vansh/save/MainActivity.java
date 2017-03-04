@@ -39,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                recordClap();
+                Intent it=new Intent(MainActivity.this,MapsActivityCurrentPlace.class);
+                startActivity(it);
 
             }
         });
