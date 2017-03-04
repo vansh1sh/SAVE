@@ -16,5 +16,6 @@
         android:id="@+id/option_get_place"
         android:title="@string/option_get_place"
         android:icon="@drawable/ic_contacts24dp"
+
         app:showAsAction="always"/>
 </menu>
