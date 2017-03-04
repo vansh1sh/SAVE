@@ -35,6 +35,7 @@
         <activity
             android:name=".MapsActivityCurrentPlace"
             android:label="S.A.V.E."
+
             android:theme="@style/AppTheme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
