@@ -41,6 +41,10 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="100dp"
+        android:titleTextColor="#fff"
+        app:titleTextColor="#fff"
+        style="@style/myTheme.ActionBar.Text"
+        android:background="@drawable/background_toolbar_translucent"
     />
 
 

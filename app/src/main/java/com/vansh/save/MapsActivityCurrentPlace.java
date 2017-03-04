@@ -214,9 +214,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.option_get_place) {
+      /*  if (item.getItemId() == R.id.option_get_place) {
             showCurrentPlace();
-        }
+        }*/
         return true;
     }
 
