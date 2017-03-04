@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -27,17 +29,19 @@
         <activity
             android:name=".EmergencyActivity"
             android:label="@string/title_activity_emergency"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
+            <!--android:theme="@style/AppTheme.NoActionBar"-->
+
         <activity
             android:name=".MapsActivityCurrentPlace"
-            android:label="Maps">
+            android:label=" "
+            android:theme="@style/AppTheme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParalaxActivity" />
         <activity android:name=".ParallaxActivity"></activity>
     </application>
 
