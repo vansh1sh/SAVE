@@ -1,6 +1,7 @@
 package com.vansh.save;
 
 import android.Manifest;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView textSpeach;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private SoundMeter mSensor;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +36,15 @@ public class MainActivity extends AppCompatActivity {
         requestCameraPermission();
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+        relativeLayout = (RelativeLayout) findViewById(R.id.LayoutBG);
         textSpeach = (ImageView) findViewById(R.id.btnSpeak);
 
         textSpeach.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
+                relativeLayout.setBackground(Drawable.red));
+
                 promptSpeechInput();
 
             }
