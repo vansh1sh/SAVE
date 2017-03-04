@@ -414,6 +414,12 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(12.969264,79.155938))
                         .title("Unsafe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+ mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(12.968864, 79.161095))
+                        .title("Very Safe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+ mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(12.971604, 79.165172))
+                        .title("Deathly Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         }
 
