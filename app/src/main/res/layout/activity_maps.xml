@@ -1,196 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ScrollView01"
-    android:src="@drawable/bg_gradient"
+    android:background="#FFFFFF"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent">
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/LayoutBG"
+    android:layout_height="match_parent" >
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_gradient"
+        android:id="@+id/bgcolor"/>
+
+
+
+<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="match_parent"
+    android:layout_height="300dp" >
+    <android.support.v7.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    />
+
+
+</fragment>
 
 
 
     <LinearLayout
+        android:layout_below="@+id/map"
+        android:id="@+id/ll_panel"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-
-
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_gravity="bottom"
+        android:layout_height="wrap_content">
+        <View
+            android:id="@+id/card_drop_shadow"
             android:layout_width="match_parent"
-            android:id="@+id/LayoutBG"
-            android:layout_height="match_parent" >
-
-
-            <ImageView
+            android:layout_height="4dp"
+            android:background="@drawable/card_dropshadow"
+            />
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="bottom"
+            android:id="@+id/card_panel_bottom">
+            <LinearLayout
+                android:id="@+id/ll_card_home"
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/bg_gradient"
-                android:id="@+id/bgcolor"/>
+                android:background="@color/colorPrimary">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:id="@+id/ll_fas"
+                    android:layout_marginLeft="15dp"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    >
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/alarm"
+                        />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="5"
+
+                        android:layout_marginLeft="15dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Contact Us"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Information About Us"
+                            />
+                    </LinearLayout>
+                    <!--<ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/alarmmain"
+                        android:rotation="-90"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        />-->
+                </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/divider"/>
+                <LinearLayout
+                    android:id="@+id/ll_ais"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:clickable="true"
+
+                    android:layout_marginLeft="15dp"
+                    android:background="?attr/selectableItemBackground"
+                    >
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/alarm"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="5"
+                        android:layout_marginLeft="15dp"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Am I Safe?"
+                            android:textStyle="bold"
+                            android:textSize="20sp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Am I Safe description"
+                            />
+                    </LinearLayout>
+                    <!--<ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/alarm"
+                        android:rotation="-90"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        />-->
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/btnSpeak"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitCenter"
+                android:background="@null"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/siren" />
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Current Location"
-
+                android:layout_marginTop="10dp"
+                android:text="@string/tap_on_mic"
+                android:textColor="@color/white"
                 android:textSize="16dp"
-                android:layout_margin="15dp"
-                android:textColor="@color/white"/>
-
-            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="match_parent"
-                android:layout_height="300dp" >
-
-            </fragment>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:background="@drawable/background_toolbar_translucent"
-                />
-
-
-            <LinearLayout
-                android:layout_below="@+id/map"
-                android:id="@+id/ll_panel"
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content">
-                <View
-                    android:id="@+id/card_drop_shadow"
-                    android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:background="@drawable/card_dropshadow"
-                    />
-                <android.support.v7.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_gravity="bottom"
-                    android:id="@+id/card_panel_bottom">
-                    <LinearLayout
-                        android:id="@+id/ll_card_home"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/colorPrimary">
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:id="@+id/ll_fas"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            >
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:layout_gravity="center_vertical"
-                                android:src="@drawable/alarm"
-                                />
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="5"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Contact Us"
-                                    android:textStyle="bold"
-                                    android:textSize="20sp"
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Information About Us"
-                                    />
-                            </LinearLayout>
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/alarmmain"
-                                android:rotation="-90"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                />
-                        </LinearLayout>
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/divider"/>
-                        <LinearLayout
-                            android:id="@+id/ll_ais"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:orientation="horizontal"
-                            android:clickable="true"
-                            android:background="?attr/selectableItemBackground"
-                            >
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/alarm"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                />
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="5"
-                                >
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Am I Safe?"
-                                    android:textStyle="bold"
-                                    android:textSize="20sp"
-                                    />
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Am I Safe description"
-                                    />
-                            </LinearLayout>
-                            <ImageView
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/alarm"
-                                android:rotation="-90"
-                                android:layout_gravity="center_vertical"
-                                android:layout_weight="1"
-                                />
-                        </LinearLayout>
-                    </LinearLayout>
-                </android.support.v7.widget.CardView>
-            </LinearLayout>
-
-
-
-
-
-        </RelativeLayout>
-
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btnSpeak"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_dialog_email" />
-    </LinearLayout>
+                android:textStyle="normal" />
+        </LinearLayout>-->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/btnSpeak"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_dialog_email" />
+</LinearLayout>
 
 </ScrollView>

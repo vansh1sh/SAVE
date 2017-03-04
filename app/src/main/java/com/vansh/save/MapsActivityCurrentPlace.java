@@ -103,7 +103,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
-        getSupportActionBar().hide();
+        //getSupportActionBar().hide();
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -130,6 +130,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
                 promptSpeechInput();
 
+                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
+                startActivity(i);*/
+
 
 
             }
@@ -146,6 +149,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 .addApi(Places.PLACE_DETECTION_API)
                 .build();
         mGoogleApiClient.connect();
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
     }
 
     /**
@@ -478,8 +484,10 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         }
     }
     public void recordClap() {
-        mSensor.start();
         imageView.setImageResource(R.drawable.bg_gradient2);
+
+        mSensor.start();
+
 
         double startAmplitude = mSensor.getAmplitude();
         Log.d("StartAmp", "starting amplitude: " + startAmplitude);
