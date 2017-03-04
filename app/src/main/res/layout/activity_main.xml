@@ -5,13 +5,20 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:id="@+id/LayoutBG"
+
     >
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/bgimg"
         android:src="@color/bg_gradient_end"/>
 
+    <com.google.android.gms.maps.MapView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/myloc">
+
+    </com.google.android.gms.maps.MapView>
 
 
 <TextView
@@ -41,7 +48,7 @@ android:id="@+id/LayoutBG"
         android:scaleType="fitCenter"
         android:background="@null"
 
-        android:src="@drawable/alarmmain" />
+        android:src="@drawable/siren" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -20,12 +20,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.vansh.save.R.drawable.red;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtSpeechInput;
-    private ImageView textSpeach;
+    private ImageView textSpeach, imageView;
+
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private SoundMeter mSensor;
     private RelativeLayout relativeLayout;
@@ -40,14 +40,18 @@ public class MainActivity extends AppCompatActivity {
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         relativeLayout = (RelativeLayout) findViewById(R.id.LayoutBG);
         textSpeach = (ImageView) findViewById(R.id.btnSpeak);
+        imageView = (ImageView) findViewById(R.id.bgimg);
 
         textSpeach.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //relativeLayout.setBackground(Drawable red);
+
+                imageView.setImageResource(R.drawable.bg_gradient2);
+
                 //promptSpeechInput();
                 recordClap();
+
 
             }
         });
@@ -83,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
         while (ampDiff);
 
         Toast.makeText(this, "Scream Detected, Notifying Police", Toast.LENGTH_SHORT).show();
+
+        Intent it=new Intent(MainActivity.this,MapsActivityCurrentPlace.class);
+        startActivity(it);
         mSensor.stop();
 
 
