@@ -47,6 +47,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.vansh.save.customwidgets.DialogUtil;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -115,7 +116,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         setContentView(R.layout.activity_maps);
         relativeLayout = (RelativeLayout) findViewById( R.id.LayoutBG);
         imageView = (ImageView) findViewById(R.id.bgcolor);
-        txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+      //  txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         textSpeach = (FloatingActionButton) findViewById(R.id.btnSpeak);
 
         mSensor = new SoundMeter();
@@ -127,9 +128,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             public void onClick(View v) {
 
 
+                promptSpeechInput();
 
-                //promptSpeechInput();
-                recordClap();
 
 
             }
@@ -497,7 +497,12 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         }
         while (ampDiff);
         mSensor.stop();
-        Toast.makeText(this, "Scream Detected, Notifying Police", Toast.LENGTH_SHORT).show();
+
+        DialogUtil.createDialog("Scream Detected, Notifying Police", MapsActivityCurrentPlace.this, new DialogUtil.OnPositiveButtonClick() {
+            @Override
+            public void onClick() {
+            }
+        });
 
 
 
@@ -537,7 +542,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    txtSpeechInput.setText(result.get(0));
+                    //txtSpeechInput.setText(result.get(0));
                     if (result.get(0).equals("help")){
                         recordClap();
                     }
@@ -547,6 +552,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         }
     }
+
+
+
 
 
 }
