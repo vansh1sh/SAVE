@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         requestCameraPermission();
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
-        relativeLayout = (RelativeLayout) findViewById(R.id.LayoutBG);
         textSpeach = (ImageView) findViewById(R.id.btnSpeak);
         imageView = (ImageView) findViewById(R.id.bgimg);
 

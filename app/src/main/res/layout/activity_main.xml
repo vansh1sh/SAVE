@@ -41,14 +41,7 @@ android:orientation="vertical"
     android:gravity="center"
     android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/btnSpeak"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:scaleType="fitCenter"
-        android:background="@null"
 
-        android:src="@drawable/siren" />
 
     <TextView
         android:layout_width="wrap_content"
