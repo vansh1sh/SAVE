@@ -11,12 +11,13 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtSpeechInput;
-    private TextView textSpeach;
+    private ImageView textSpeach;
     private final int REQ_CODE_SPEECH_INPUT = 100;
 
     @Override
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
-        textSpeach = (TextView) findViewById(R.id.btnSpeak);
+        textSpeach = (ImageView) findViewById(R.id.btnSpeak);
 
         textSpeach.setOnClickListener(new View.OnClickListener() {
 
