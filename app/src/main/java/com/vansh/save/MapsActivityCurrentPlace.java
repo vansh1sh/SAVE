@@ -34,6 +34,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -203,6 +204,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     public void onMapReady(GoogleMap map) {
         mMap = map;
 
+
         // Use a custom info window adapter to handle multiple lines of text in the
         // info window contents.
         mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
@@ -227,6 +229,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
                 return infoWindow;
             }
+
+
         });
 
         // Turn on the My Location layer and the related control on the map.
@@ -294,6 +298,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 }
             }
         }
+
         updateLocationUI();
     }
 
@@ -372,9 +377,12 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                                 .position(markerLatLng)
                                 .snippet(markerSnippet));
 
+
                         // Position the map's camera at the location of the marker.
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(markerLatLng,
                                 DEFAULT_ZOOM));
+
+
                     }
                 };
 
@@ -390,7 +398,23 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
      */
     private void updateLocationUI() {
         if (mMap == null) {
-            return;
+
+            return;}
+
+            if (mMap != null) {
+
+
+                // Add a marker for the selected place, with an info window
+                // showing information about that place.
+
+
+                // Position the map's camera at the location of the marker.
+
+
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(12.969264,79.155938))
+                        .title("Unsafe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
         }
 
         /*
@@ -436,11 +460,10 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             Log.d("star", "finishing amp: " + finishAmplitude + " difference: " + ampDiff);
         }
         while (ampDiff);
-
+        mSensor.stop();
         Toast.makeText(this, "Scream Detected, Notifying Police", Toast.LENGTH_SHORT).show();
 
 
-        mSensor.stop();
 
 
 
@@ -450,7 +473,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     {
         double ampDiff = finishAmplitude - startAmplitude;
         Log.d("diff", "amplitude difference " + ampDiff);
-        return (ampDiff <= 10);
+        return (ampDiff <= 5);
     }
 
     private void promptSpeechInput() {

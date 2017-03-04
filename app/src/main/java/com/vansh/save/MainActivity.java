@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
     {
         double ampDiff = finishAmplitude - startAmplitude;
         Log.d("diff", "amplitude difference " + ampDiff);
-        return (ampDiff <= 5);
+        return (ampDiff <= 13);
     }
 
     private void promptSpeechInput() {
