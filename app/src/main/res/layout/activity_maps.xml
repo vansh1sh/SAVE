@@ -9,21 +9,15 @@
         android:src="@drawable/bg_gradient"
         android:id="@+id/bgcolor"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your Current Location"
 
-        android:textSize="16dp"
-        android:layout_margin="15dp"
-        android:textColor="@color/white"/>
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
-    android:layout_margin="15dp"
+    android:layout_marginTop="23dp"
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="300dp" >
+
 
 </fragment>
 
@@ -56,6 +50,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:orientation="vertical" >
 

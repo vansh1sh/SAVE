@@ -102,12 +102,14 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         mSensor = new SoundMeter();
 
+
         textSpeach.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-
+                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
+                startActivity(i);*/
 
                 //promptSpeechInput();
                 recordClap();
@@ -418,8 +420,10 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         }
     }
     public void recordClap() {
-        mSensor.start();
         imageView.setImageResource(R.drawable.bg_gradient2);
+
+        mSensor.start();
+
 
         double startAmplitude = mSensor.getAmplitude();
         Log.d("StartAmp", "starting amplitude: " + startAmplitude);
