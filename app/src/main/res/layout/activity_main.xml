@@ -4,11 +4,13 @@ xmlns:tools="http://schemas.android.com/tools"
 
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@drawable/bg_gradient"
 android:orientation="vertical"
-
-    android:id="@+id/LayoutBG"
+android:id="@+id/LayoutBG"
     >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@color/bg_gradient_end"/>
 
 
 
@@ -19,7 +21,7 @@ android:orientation="vertical"
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="100dp"
-    android:textColor="@color/white"
+    android:textColor="#000000"
     android:textSize="26dp"
     android:textStyle="normal" />
 
@@ -28,19 +30,18 @@ android:orientation="vertical"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="100dp"
+    android:layout_marginBottom="40dp"
     android:gravity="center"
-    android:layout_margin="60dp"
     android:orientation="vertical" >
 
     <ImageButton
         android:id="@+id/btnSpeak"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="fitCenter"
         android:background="@null"
 
-        android:src="@drawable/siren" />
+        android:src="@drawable/alarmmain" />
 
     <TextView
         android:layout_width="wrap_content"

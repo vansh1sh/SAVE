@@ -20,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.vansh.save.R.drawable.red;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtSpeechInput;
@@ -43,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                relativeLayout.setBackground(Drawable.red));
-
-                promptSpeechInput();
+                //relativeLayout.setBackground(Drawable red);
+                //promptSpeechInput();
+                recordClap();
 
             }
         });
@@ -59,19 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Showing google speech input dialog
 
-    private void promptSpeechInput() {
-        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                "Hi speak something");
-        try {
-            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
-        } catch (ActivityNotFoundException a) {
 
-        }
-    }
 
     public void recordClap() {
         mSensor.start();
@@ -92,16 +82,33 @@ public class MainActivity extends AppCompatActivity {
         }
         while (ampDiff);
 
-        Toast.makeText(this, "Scream Detected", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Scream Detected, Notifying Police", Toast.LENGTH_SHORT).show();
+        mSensor.stop();
+
+
+
     }
 
     private boolean checkAmplitude(double startAmplitude, double finishAmplitude)
     {
         double ampDiff = finishAmplitude - startAmplitude;
         Log.d("diff", "amplitude difference " + ampDiff);
-        return (ampDiff <= 0);
+        return (ampDiff <= 5);
     }
 
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                "Hi speak something");
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+        }
+    }
     // Receiving speech input
 
     @Override
@@ -115,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     txtSpeechInput.setText(result.get(0));
+                    if (result.get(0).equals("help")){
+                        recordClap();
+                    }
                 }
                 break;
             }
