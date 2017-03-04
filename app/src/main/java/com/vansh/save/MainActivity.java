@@ -1,6 +1,7 @@
 package com.vansh.save;
 
 import android.Manifest;
+import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -39,16 +40,20 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent it=new Intent(MainActivity.this,MapsActivityCurrentPlace.class);
-                startActivity(it);
+                String number = "7354273542";
+                Uri call = Uri.parse("tel:" + number);
+                Intent surf = new Intent(Intent.ACTION_CALL, call);
+                startActivity(surf);
 
             }
         });
 
     }
+
+
     public void requestCameraPermission() {
         // Camera permission has not been granted yet. Request it directly.
-        ActivityCompat.requestPermissions(MainActivity.this, new String[]{ Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{ Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE},
                 1);
     }
 
