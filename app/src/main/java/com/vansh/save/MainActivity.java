@@ -1,5 +1,7 @@
 package com.vansh.save;
 
+import android.Manifest;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.ArrayList;
@@ -10,20 +12,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtSpeechInput;
     private ImageView textSpeach;
     private final int REQ_CODE_SPEECH_INPUT = 100;
+    private SoundMeter mSensor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mSensor = new SoundMeter();
+        requestCameraPermission();
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         textSpeach = (ImageView) findViewById(R.id.btnSpeak);
@@ -33,9 +40,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 promptSpeechInput();
+
             }
         });
 
+    }
+    public void requestCameraPermission() {
+        // Camera permission has not been granted yet. Request it directly.
+        ActivityCompat.requestPermissions(MainActivity.this, new String[]{ Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                1);
     }
 
     // Showing google speech input dialog
@@ -52,6 +65,35 @@ public class MainActivity extends AppCompatActivity {
         } catch (ActivityNotFoundException a) {
 
         }
+    }
+
+    public void recordClap() {
+        mSensor.start();
+
+        double startAmplitude = mSensor.getAmplitude();
+        Log.d("StartAmp", "starting amplitude: " + startAmplitude);
+        boolean ampDiff;
+        do {
+            Log.d("StartAmp", "waiting while taking in input");
+            double finishAmplitude = 0;
+            try {
+                finishAmplitude = mSensor.getAmplitude();
+            } catch (RuntimeException re) {
+                Log.e("StartAmp", "unable to get the max amplitude " + re);
+            }
+            ampDiff = checkAmplitude(startAmplitude, finishAmplitude);
+            Log.d("star", "finishing amp: " + finishAmplitude + " difference: " + ampDiff);
+        }
+        while (ampDiff);
+
+        Toast.makeText(this, "Scream Detected", Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean checkAmplitude(double startAmplitude, double finishAmplitude)
+    {
+        double ampDiff = finishAmplitude - startAmplitude;
+        Log.d("diff", "amplitude difference " + ampDiff);
+        return (ampDiff <= 0);
     }
 
     // Receiving speech input
