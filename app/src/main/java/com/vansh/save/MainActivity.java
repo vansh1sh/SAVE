@@ -2,6 +2,7 @@ package com.vansh.save;
 
 import android.Manifest;
 import android.net.Uri;
+import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,15 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtSpeechInput;
-    private ImageView textSpeach;
+    private ImageView textSpeach, imageView;
+
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private SoundMeter mSensor;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,16 +39,24 @@ public class MainActivity extends AppCompatActivity {
         requestCameraPermission();
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+        relativeLayout = (RelativeLayout) findViewById(R.id.LayoutBG);
         textSpeach = (ImageView) findViewById(R.id.btnSpeak);
-        promptSpeechInput();
+        imageView = (ImageView) findViewById(R.id.bgimg);
+
         textSpeach.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                String number = "7354273542";
+                /*String number = "7354273542";
                 Uri call = Uri.parse("tel:" + number);
                 Intent surf = new Intent(Intent.ACTION_CALL, call);
                 startActivity(surf);
+*/
+                imageView.setImageResource(R.drawable.bg_gradient2);
+
+                //promptSpeechInput();
+                recordClap();
+
 
             }
         });
@@ -81,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         while (ampDiff);
 
         Toast.makeText(this, "Scream Detected, Notifying Police", Toast.LENGTH_SHORT).show();
+
+        Intent it=new Intent(MainActivity.this,MapsActivityCurrentPlace.class);
+        startActivity(it);
+        mSensor.stop();
+
+
 
     }
 

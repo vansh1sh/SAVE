@@ -1,10 +1,25 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
+
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:background="@drawable/bg_gradient"
-android:orientation="vertical" >
+android:orientation="vertical"
+
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/bgimg"
+        android:src="@color/bg_gradient_end"/>
+
+    <com.google.android.gms.maps.MapView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:id="@+id/myloc">
+
+    </com.google.android.gms.maps.MapView>
+
 
 <TextView
     android:id="@+id/txtSpeechInput"
@@ -13,7 +28,7 @@ android:orientation="vertical" >
     android:layout_alignParentTop="true"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="100dp"
-    android:textColor="@color/white"
+    android:textColor="#000000"
     android:textSize="26dp"
     android:textStyle="normal" />
 
@@ -22,16 +37,18 @@ android:orientation="vertical" >
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:layout_centerHorizontal="true"
-    android:layout_marginBottom="60dp"
+    android:layout_marginBottom="40dp"
     android:gravity="center"
     android:orientation="vertical" >
 
     <ImageButton
         android:id="@+id/btnSpeak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="fitCenter"
         android:background="@null"
-        android:src="@drawable/ico_mic" />
+
+        android:src="@drawable/siren" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -39,7 +56,7 @@ android:orientation="vertical" >
         android:layout_marginTop="10dp"
         android:text="@string/tap_on_mic"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="16dp"
         android:textStyle="normal" />
 </LinearLayout>
 

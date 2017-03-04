@@ -1,9 +1,12 @@
 package com.vansh.save;
 
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -14,7 +17,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -33,6 +39,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
 /**
  * An activity that displays a map showing the place at the device's current location.
  */
@@ -43,8 +52,12 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
     private static final String TAG = MapsActivityCurrentPlace.class.getSimpleName();
     private GoogleMap mMap;
+    private RelativeLayout relativeLayout;
+    private ImageView textSpeach, imageView;
     private CameraPosition mCameraPosition;
-
+    private SoundMeter mSensor;
+    private TextView txtSpeechInput;
+    private final int REQ_CODE_SPEECH_INPUT = 100;
     // The entry point to Google Play services, used by the Places API and Fused Location Provider.
     private GoogleApiClient mGoogleApiClient;
 
@@ -82,6 +95,26 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
+        relativeLayout = (RelativeLayout) findViewById( R.id.LayoutBG);
+        imageView = (ImageView) findViewById(R.id.bgcolor);
+        txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
+        textSpeach = (ImageView) findViewById(R.id.btnSpeak);
+
+        mSensor = new SoundMeter();
+
+        textSpeach.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+
+                //promptSpeechInput();
+                recordClap();
+
+
+            }
+        });
 
         // Build the Play services client for use by the Fused Location Provider and the Places API.
         // Use the addApi() method to request the Google Places API and the Fused Location Provider.
@@ -384,4 +417,78 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             mLastKnownLocation = null;
         }
     }
+    public void recordClap() {
+        mSensor.start();
+        imageView.setImageResource(R.drawable.bg_gradient2);
+
+        double startAmplitude = mSensor.getAmplitude();
+        Log.d("StartAmp", "starting amplitude: " + startAmplitude);
+        boolean ampDiff;
+        do {
+            Log.d("StartAmp", "waiting while taking in input");
+            double finishAmplitude = 0;
+            try {
+                finishAmplitude = mSensor.getAmplitude();
+            } catch (RuntimeException re) {
+                Log.e("StartAmp", "unable to get the max amplitude " + re);
+            }
+            ampDiff = checkAmplitude(startAmplitude, finishAmplitude);
+            Log.d("star", "finishing amp: " + finishAmplitude + " difference: " + ampDiff);
+        }
+        while (ampDiff);
+
+        Toast.makeText(this, "Scream Detected, Notifying Police", Toast.LENGTH_SHORT).show();
+
+
+        mSensor.stop();
+
+
+
+    }
+
+    private boolean checkAmplitude(double startAmplitude, double finishAmplitude)
+    {
+        double ampDiff = finishAmplitude - startAmplitude;
+        Log.d("diff", "amplitude difference " + ampDiff);
+        return (ampDiff <= 10);
+    }
+
+    private void promptSpeechInput() {
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
+                "Hi speak something");
+        try {
+            startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+        } catch (ActivityNotFoundException a) {
+
+        }
+    }
+    // Receiving speech input
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        switch (requestCode) {
+            case REQ_CODE_SPEECH_INPUT: {
+                if (resultCode == RESULT_OK && null != data) {
+
+                    ArrayList<String> result = data
+                            .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    txtSpeechInput.setText(result.get(0));
+                    if (result.get(0).equals("help")){
+                        recordClap();
+                    }
+                }
+                break;
+            }
+
+        }
+    }
+
+
 }
+
