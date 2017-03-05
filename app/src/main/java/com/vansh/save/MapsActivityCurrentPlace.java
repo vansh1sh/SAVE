@@ -1,5 +1,6 @@
 package com.vansh.save;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
@@ -7,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -27,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -110,6 +113,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
         //getSupportActionBar().hide();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
@@ -119,10 +125,16 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         setContentView(R.layout.activity_maps);
         relativeLayout = (RelativeLayout) findViewById( R.id.LayoutBG);
         imageView = (ImageView) findViewById(R.id.bgcolor);
+        Toolbar tool = (Toolbar) findViewById(R.id.toolbar);
+        ImageView img = (ImageView) findViewById(R.id.img1);
         lll = (LinearLayout) findViewById(R.id.lll);
       //  txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         textSpeach = (FloatingActionButton) findViewById(R.id.btnSpeak);
-        textSpeach.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.siren));
+       // textSpeach.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.siren));
+
+       Drawable drawable = ContextCompat.getDrawable(this, R.drawable.h24);
+        tool.setNavigationIcon(drawable);
+        setSupportActionBar(tool);
 
         mSensor = new SoundMeter();
 
@@ -141,6 +153,26 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             }
         });
 */
+
+        img.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                final Dialog dialog = new Dialog(MapsActivityCurrentPlace.this);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.dialog_filter);
+                dialog.show();
+                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
+                startActivity(i);*/
+
+
+
+            }
+        });
+
+
 
         textSpeach.setOnClickListener(new View.OnClickListener() {
 
@@ -247,8 +279,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
-        mMap.getUiSettings().setMapToolbarEnabled(false);
-        mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
 
         try {
             // Customise the styling of the base map using a JSON object defined
@@ -329,10 +360,14 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         // Set the map's camera position to the current location of the device.
         if (mCameraPosition != null) {
             mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
+            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
         } else if (mLastKnownLocation != null) {
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                     new LatLng(mLastKnownLocation.getLatitude(),
                             mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+
         } else {
             Log.d(TAG, "Current location is null. Using defaults.");
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
@@ -469,7 +504,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
                 // Position the map's camera at the location of the marker.
 
-
+                mMap.getUiSettings().setMapToolbarEnabled(false);
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(12.969264,79.155938))
                         .title("Unsafe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
@@ -570,7 +606,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         try {
             Snackbar snackbar = Snackbar
                     .make(lll, "Checking For Any Unusual Sound...", Snackbar.LENGTH_LONG)
-                    .setAction("RETRY", new View.OnClickListener() {
+                    .setAction("Okay", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                         }

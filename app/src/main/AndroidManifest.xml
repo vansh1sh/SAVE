@@ -34,7 +34,7 @@
 
         <activity
             android:name=".MapsActivityCurrentPlace"
-            android:label="SaveApp"
+            android:label="Save.io"
 
 
             android:theme="@style/AppTheme.Transparent">
