@@ -58,13 +58,22 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_gravity="bottom"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
         <View
             android:id="@+id/card_drop_shadow"
             android:layout_width="match_parent"
             android:layout_height="4dp"
             android:background="@drawable/card_dropshadow"
             />
+
+        <VideoView
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/myvid"
+             />
+
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="100dp"
@@ -195,6 +204,7 @@
                 </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
+
     </LinearLayout>
     </RelativeLayout>
 
