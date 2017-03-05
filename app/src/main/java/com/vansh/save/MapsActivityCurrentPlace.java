@@ -1,5 +1,6 @@
 package com.vansh.save;
 
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,10 +9,12 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -26,6 +29,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -88,7 +92,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     // Keys for storing activity state.
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
-
+    LinearLayout lll;
     // Used for selecting the current place.
     private final int mMaxEntries = 5;
     private String[] mLikelyPlaceNames = new String[mMaxEntries];
@@ -115,8 +119,10 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         setContentView(R.layout.activity_maps);
         relativeLayout = (RelativeLayout) findViewById( R.id.LayoutBG);
         imageView = (ImageView) findViewById(R.id.bgcolor);
+        lll = (LinearLayout) findViewById(R.id.lll);
       //  txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         textSpeach = (FloatingActionButton) findViewById(R.id.btnSpeak);
+        textSpeach.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.siren));
 
         mSensor = new SoundMeter();
 
@@ -241,6 +247,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap map) {
         mMap = map;
+        mMap.getUiSettings().setMapToolbarEnabled(false);
+
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
@@ -498,6 +506,9 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         }
     }
     public void recordClap() {
+
+
+
         imageView.setImageResource(R.drawable.bg_gradient2);
 
         mSensor.start();
@@ -520,12 +531,21 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         while (ampDiff);
         mSensor.stop();
 
-        DialogUtil.createDialog("Scream Detected, Notifying Police", MapsActivityCurrentPlace.this, new DialogUtil.OnPositiveButtonClick() {
-            @Override
-            public void onClick() {
-            }
-        });
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this,R.style.MyDialogTheme);
+        alertDialogBuilder.setMessage("Scream Detected, Notifying Police.");
+                alertDialogBuilder.setPositiveButton("CALL HELP",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface arg0, int arg1) {
+            String number = "7354273542";
+                Uri call = Uri.parse("tel:" + number);
+                Intent surf = new Intent(Intent.ACTION_CALL, call);
+                startActivity(surf);
 
+                            }
+                        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
 
 
 
@@ -547,7 +567,22 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
                 "Hi speak something");
         try {
+            Snackbar snackbar = Snackbar
+                    .make(lll, "Checking For Any Unusual Sound...", Snackbar.LENGTH_LONG)
+                    .setAction("RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                        }
+                    });
+            snackbar.setActionTextColor(Color.RED);
+            View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(Color.YELLOW);
+            sbView.setBackgroundColor(ContextCompat.getColor(this, R.color.bg_gradient_start));
+
+            snackbar.show();
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
+
         } catch (ActivityNotFoundException a) {
 
         }
@@ -561,10 +596,15 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
                 if (resultCode == RESULT_OK && null != data) {
+                    //txtSpeechInput.setText(result.get(0));
+
+
+
 
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-                    //txtSpeechInput.setText(result.get(0));
+
+
                     if (result.get(0).equals("help")){
 
                         recordClap();
