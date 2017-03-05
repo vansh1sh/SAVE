@@ -552,6 +552,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     //txtSpeechInput.setText(result.get(0));
                     if (result.get(0).equals("help")){
+
                         recordClap();
                     }
                 }
