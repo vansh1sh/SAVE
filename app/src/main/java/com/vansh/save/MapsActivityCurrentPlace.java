@@ -127,7 +127,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         mSensor = new SoundMeter();
 
 
-        final VideoView videoView =
+        /*final VideoView videoView =
                 (VideoView) findViewById(R.id.myvid);
         String uriPath = "android.resource://"+getPackageName()+"/"+R.raw.h;
         videoView.setVideoPath(uriPath);
@@ -140,7 +140,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 mp.setLooping(true);
             }
         });
-
+*/
 
         textSpeach.setOnClickListener(new View.OnClickListener() {
 

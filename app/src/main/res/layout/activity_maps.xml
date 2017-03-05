@@ -72,311 +72,333 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginRight="2dp"
             android:weightSum="1">
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="4dp"
-            android:layout_margin="3dp"
-            android:layout_weight="0.5"
-            android:layout_gravity="bottom"
-
-            android:id="@+id/card_panel_bottom1">
-            <LinearLayout
-                android:id="@+id/ll_card_home1"
-                android:orientation="vertical"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/ll_fas1"
-                    android:clickable="true"
-                    android:background="?attr/selectableItemBackground"
-                    >
+                android:layout_height="100dp"
+                android:src="@drawable/card1"/>
 
-                    <VideoView
-                        android:layout_width="wrap_content"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="10dp"
-                        android:id="@+id/myvid2"
-                        />
-
-                    <LinearLayout
-                          android:layout_width="0dp"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical"
-                          android:layout_gravity="center_vertical"
-                          android:layout_weight="5"
-
-                          android:layout_marginLeft="15dp"
-                          >
-                        <!--  <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Contact Us"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Information About Us"
-                            />
-                            -->
-                    </LinearLayout>
-                    <!--<ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/alarmmain"
-                        android:rotation="-90"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        />-->
-                </LinearLayout>
-                </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_weight="0.5"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="4dp"
-            android:layout_margin="3dp"
-            android:layout_gravity="bottom"
-
-            android:id="@+id/card_panel_bottom2">
-            <LinearLayout
-                android:id="@+id/ll_card_home2"
-                android:orientation="vertical"
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:id="@+id/ll_fas2"
-                    android:clickable="true"
-                    android:background="?attr/selectableItemBackground"
-                    >
-                  <!--  <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                android:layout_height="100dp"
+                android:src="@drawable/card2"
+                android:id="@+id/imageView3" />
 
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/like"
-                        />-->
-                    <VideoView
-                        android:layout_width="wrap_content"
-                        android:layout_height="80dp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_margin="10dp"
-                        android:id="@+id/myvid1"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="5"
-
-                        android:layout_marginLeft="15dp"
-                        >
-                        <!--  <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Contact Us"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Information About Us"
-                            />
-                            -->
-                    </LinearLayout>
-                    <!--<ImageView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/alarmmain"
-                        android:rotation="-90"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="1"
-                        />-->
-                </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/card3"/>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-        </LinearLayout>
-               <!-- <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider"/>-->
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--app:cardElevation="8dp"-->
+            <!--app:cardCornerRadius="4dp"-->
+            <!--android:layout_margin="3dp"-->
+            <!--android:layout_weight="0.5"-->
+            <!--android:layout_gravity="bottom"-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <android.support.v7.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="4dp"
-                android:layout_margin="3dp"
-                android:layout_weight="0.5"
-                android:layout_gravity="bottom"
+            <!--android:id="@+id/card_panel_bottom1">-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_card_home1"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/colorPrimary">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:id="@+id/ll_fas1"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:background="?attr/selectableItemBackground"-->
+                    <!--&gt;-->
 
-                android:id="@+id/card_panel_bottom3">
-                <LinearLayout
-                    android:id="@+id/ll_card_home3"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:id="@+id/ll_fas3"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground"
-                        >
-                        <!--<ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                    <!--<VideoView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="80dp"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_margin="15dp"-->
+                        <!--android:id="@+id/myvid2"-->
+                        <!--/>-->
 
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/like"
-                            />-->
-                        <VideoView
-                            android:layout_width="wrap_content"
-                            android:layout_height="80dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_margin="10dp"
-                            android:id="@+id/myvid3"
-                            />
+                    <!--<LinearLayout-->
+                          <!--android:layout_width="0dp"-->
+                          <!--android:layout_height="wrap_content"-->
+                          <!--android:orientation="vertical"-->
+                          <!--android:layout_gravity="center_vertical"-->
+                          <!--android:layout_weight="5"-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="5"
+                          <!--android:layout_marginLeft="15dp"-->
+                          <!--&gt;-->
+                        <!--&lt;!&ndash;  <TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Contact Us"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textSize="20sp"-->
+                            <!--/>-->
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Information About Us"-->
+                            <!--/>-->
+                            <!--&ndash;&gt;-->
+                    <!--</LinearLayout>-->
+                    <!--&lt;!&ndash;<ImageView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/alarmmain"-->
+                        <!--android:rotation="-90"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_weight="1"-->
+                        <!--/>&ndash;&gt;-->
+                <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
+        <!--<android.support.v7.widget.CardView-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="100dp"-->
+            <!--android:layout_weight="0.5"-->
+            <!--app:cardElevation="8dp"-->
+            <!--app:cardCornerRadius="4dp"-->
+            <!--android:layout_margin="3dp"-->
+            <!--android:layout_gravity="bottom"-->
 
-                            android:layout_marginLeft="15dp"
-                            >
-                            <!--  <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Contact Us"
-                                android:textStyle="bold"
-                                android:textSize="20sp"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Information About Us"
-                                />
-                                -->
-                        </LinearLayout>
-                        <!--<ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/alarmmain"
-                            android:rotation="-90"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            />-->
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:layout_weight="0.5"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="4dp"
-                android:layout_margin="3dp"
-                android:layout_gravity="bottom"
+            <!--android:id="@+id/card_panel_bottom2">-->
+            <!--<LinearLayout-->
+                <!--android:id="@+id/ll_card_home2"-->
+                <!--android:orientation="vertical"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="@color/colorPrimary">-->
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="horizontal"-->
+                    <!--android:id="@+id/ll_fas2"-->
+                    <!--android:layout_marginLeft="15dp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:background="?attr/selectableItemBackground"-->
+                    <!--&gt;-->
+                  <!--&lt;!&ndash;  <ImageView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
 
-                android:id="@+id/card_panel_bottom">
-                <LinearLayout
-                    android:id="@+id/ll_card_home"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:id="@+id/ll_fas"
-                        android:clickable="true"
-                        android:background="?attr/selectableItemBackground"
-                        >
-                       <!-- <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:src="@drawable/like"-->
+                        <!--/>&ndash;&gt;-->
+                    <!--<VideoView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="80dp"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_margin="15dp"-->
+                        <!--android:id="@+id/myvid1"-->
+                        <!--/>-->
 
-                            android:layout_gravity="center_vertical"
-                            android:src="@drawable/like"
-                            />-->
-                        <VideoView
-                            android:layout_width="wrap_content"
-                            android:layout_height="80dp"
-                            android:layout_gravity="center_vertical"
-                            android:id="@+id/myvid"
-                            android:layout_margin="10dp"
-                            />
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="vertical"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_weight="5"-->
 
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="5"
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--&gt;-->
+                        <!--&lt;!&ndash;  <TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Contact Us"-->
+                            <!--android:textStyle="bold"-->
+                            <!--android:textSize="20sp"-->
+                            <!--/>-->
+                        <!--<TextView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:text="Information About Us"-->
+                            <!--/>-->
+                            <!--&ndash;&gt;-->
+                    <!--</LinearLayout>-->
+                    <!--&lt;!&ndash;<ImageView-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:src="@drawable/alarmmain"-->
+                        <!--android:rotation="-90"-->
+                        <!--android:layout_gravity="center_vertical"-->
+                        <!--android:layout_weight="1"-->
+                        <!--/>&ndash;&gt;-->
+                <!--</LinearLayout>-->
+            <!--</LinearLayout>-->
+        <!--</android.support.v7.widget.CardView>-->
+        <!--</LinearLayout>-->
+               <!--&lt;!&ndash; <View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:background="@color/divider"/>&ndash;&gt;-->
 
-                            android:layout_marginLeft="15dp"
-                            >
-                            <!--  <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Contact Us"
-                                android:textStyle="bold"
-                                android:textSize="20sp"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Information About Us"
-                                />
-                                -->
-                        </LinearLayout>
-                        <!--<ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/alarmmain"
-                            android:rotation="-90"
-                            android:layout_gravity="center_vertical"
-                            android:layout_weight="1"
-                            />-->
-                    </LinearLayout>
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="1">-->
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--app:cardElevation="8dp"-->
+                <!--app:cardCornerRadius="4dp"-->
+                <!--android:layout_margin="3dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:layout_gravity="bottom"-->
+
+                <!--android:id="@+id/card_panel_bottom3">-->
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_card_home3"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/colorPrimary">-->
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:id="@+id/ll_fas3"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:clickable="true"-->
+                        <!--android:background="?attr/selectableItemBackground"-->
+                        <!--&gt;-->
+                        <!--&lt;!&ndash;<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:src="@drawable/like"-->
+                            <!--/>&ndash;&gt;-->
+                        <!--<VideoView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="80dp"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_margin="15dp"-->
+                            <!--android:id="@+id/myvid3"-->
+                            <!--/>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_weight="5"-->
+
+                            <!--android:layout_marginLeft="15dp"-->
+                            <!--&gt;-->
+                            <!--&lt;!&ndash;  <TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Contact Us"-->
+                                <!--android:textStyle="bold"-->
+                                <!--android:textSize="20sp"-->
+                                <!--/>-->
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Information About Us"-->
+                                <!--/>-->
+                                <!--&ndash;&gt;-->
+                        <!--</LinearLayout>-->
+                        <!--&lt;!&ndash;<ImageView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@drawable/alarmmain"-->
+                            <!--android:rotation="-90"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_weight="1"-->
+                            <!--/>&ndash;&gt;-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+            <!--<android.support.v7.widget.CardView-->
+                <!--android:layout_width="150dp"-->
+                <!--android:layout_height="100dp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--app:cardElevation="8dp"-->
+                <!--app:cardCornerRadius="4dp"-->
+                <!--android:layout_margin="3dp"-->
+                <!--android:layout_gravity="bottom"-->
+
+                <!--android:id="@+id/card_panel_bottom">-->
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/ll_card_home"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/colorPrimary">-->
+                    <!--<LinearLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:id="@+id/ll_fas"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:clickable="true"-->
+                        <!--android:background="?attr/selectableItemBackground"-->
+                        <!--&gt;-->
+                       <!--&lt;!&ndash; <ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:src="@drawable/like"-->
+                            <!--/>&ndash;&gt;-->
+                        <!--<VideoView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="80dp"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_margin="15dp"-->
+                            <!--android:id="@+id/myvid"-->
+                            <!--/>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_weight="5"-->
+
+                            <!--android:layout_marginLeft="15dp"-->
+                            <!--&gt;-->
+                            <!--&lt;!&ndash;  <TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Contact Us"-->
+                                <!--android:textStyle="bold"-->
+                                <!--android:textSize="20sp"-->
+                                <!--/>-->
+                            <!--<TextView-->
+                                <!--android:layout_width="wrap_content"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:text="Information About Us"-->
+                                <!--/>-->
+                                <!--&ndash;&gt;-->
+                        <!--</LinearLayout>-->
+                        <!--&lt;!&ndash;<ImageView-->
+                            <!--android:layout_width="0dp"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@drawable/alarmmain"-->
+                            <!--android:rotation="-90"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:layout_weight="1"-->
+                            <!--/>&ndash;&gt;-->
+                    <!--</LinearLayout>-->
+                <!--</LinearLayout>-->
+            <!--</android.support.v7.widget.CardView>-->
+        <!--</LinearLayout>-->
     </LinearLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnSpeak"
-        android:layout_marginTop="270dp"
+        android:layout_marginTop="280dp"
         android:layout_marginLeft="280dp"
         app:backgroundTint="@color/white"
         android:layout_width="60dp"
