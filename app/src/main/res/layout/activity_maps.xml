@@ -43,7 +43,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
         android:titleTextColor="#fff"
         app:titleTextColor="#fff"
         android:background="@drawable/background_toolbar_translucent"
@@ -408,6 +408,7 @@
         app:backgroundTint="@color/colorAccent"
         app:elevation="18dp"
         app:borderWidth="0dp"
+        android:backgroundTint="#f44336"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/mark" />

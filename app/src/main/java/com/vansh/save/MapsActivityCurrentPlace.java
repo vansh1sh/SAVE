@@ -1,5 +1,8 @@
 package com.vansh.save;
 
+import android.*;
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -7,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -30,6 +34,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -73,8 +79,11 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     private GoogleMap mMap;
     private RelativeLayout relativeLayout;
     private ImageView imageView;
+    private static final int CAMERA_REQUEST = 1888;
+
     private FloatingActionButton textSpeach;
     private CameraPosition mCameraPosition;
+    String no="7354273542";
     private SoundMeter mSensor;
     private TextView txtSpeechInput;
     private final int REQ_CODE_SPEECH_INPUT = 100;
@@ -123,16 +132,19 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
+
         relativeLayout = (RelativeLayout) findViewById( R.id.LayoutBG);
         imageView = (ImageView) findViewById(R.id.bgcolor);
         Toolbar tool = (Toolbar) findViewById(R.id.toolbar);
         ImageView img = (ImageView) findViewById(R.id.img1);
+        ImageView img2 = (ImageView) findViewById(R.id.imageView3);
+        ImageView img3 = (ImageView) findViewById(R.id.img3);
         lll = (LinearLayout) findViewById(R.id.lll);
       //  txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
         textSpeach = (FloatingActionButton) findViewById(R.id.btnSpeak);
        // textSpeach.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.siren));
 
-       Drawable drawable = ContextCompat.getDrawable(this, R.drawable.h24);
+       Drawable drawable = ContextCompat.getDrawable(this, R.drawable.h241);
         tool.setNavigationIcon(drawable);
         setSupportActionBar(tool);
 
@@ -171,6 +183,40 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
             }
         });
+      img3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                final Dialog dialog = new Dialog(MapsActivityCurrentPlace.this);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.dialog_filterb);
+                dialog.show();
+                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
+                startActivity(i);*/
+
+
+
+            }
+        });
+      img2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                final Dialog dialog = new Dialog(MapsActivityCurrentPlace.this);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.setContentView(R.layout.dialog_filtera);
+                dialog.show();
+                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
+                startActivity(i);*/
+
+
+
+            }
+        });
 
 
 
@@ -180,7 +226,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             public void onClick(View v) {
 
 
-                promptSpeechInput();
+                recordClap();
 
                 /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
                 startActivity(i);*/
@@ -206,6 +252,10 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         setSupportActionBar(mToolbar);
     }
 
+
+
+
+
     /**
      * Saves the state of the map when the activity is paused.
      */
@@ -221,6 +271,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     /**
      * Builds the map when the Google Play services client is successfully connected.
      */
+
+
     @Override
     public void onConnected(Bundle connectionHint) {
         // Build the map.
@@ -266,11 +318,55 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-      /*  if (item.getItemId() == R.id.option_get_place) {
-            showCurrentPlace();
-        }*/
+        if (item.getItemId() == R.id.option_get_place) {
+
+            final Dialog dialog = new Dialog(MapsActivityCurrentPlace.this);
+            dialog.setCanceledOnTouchOutside(true);
+            dialog.setContentView(R.layout.dialog_filter1);
+            Button button;
+            button = (Button) dialog.findViewById(R.id.SAVE);
+            final EditText edi = (EditText) dialog.findViewById(R.id.edit);
+
+            dialog.show();
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    no = edi.getText().toString();
+                    dialog.hide();
+
+
+                }
+            });
+        }
+            if (item.getItemId() == R.id.report) {
+                final Dialog dialog2 = new Dialog(MapsActivityCurrentPlace.this);
+                dialog2.setCanceledOnTouchOutside(true);
+                dialog2.setContentView(R.layout.dialog_filter5);
+
+                dialog2.show();
+                Button repo = (Button) dialog2.findViewById(R.id.upload);
+
+                repo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+
+
+                    }
+                });
+
+
+            }
+
+
+
+
+
         return true;
     }
+
+
 
     /**
      * Manipulates the map when it's available.
@@ -345,7 +441,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             mLocationPermissionGranted = true;
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
         /*
@@ -514,7 +610,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                         .title("Very Safe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(12.971604, 79.165172))
-                        .title("Deathly Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                        .title("Deadly Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         }
 
@@ -568,21 +664,29 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         while (ampDiff);
         mSensor.stop();
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this,R.style.MyDialogTheme);
-        alertDialogBuilder.setMessage("Scream Detected, Notifying Police.");
-                alertDialogBuilder.setPositiveButton("CALL HELP",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface arg0, int arg1) {
-            String number = "7354273542";
+
+
+        final Dialog dialog = new Dialog(MapsActivityCurrentPlace.this);
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setContentView(R.layout.dialog_filter2);
+        Button button;
+        button = (Button) dialog.findViewById(R.id.callbtn);
+
+        dialog.show();
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String number = no;
                 Uri call = Uri.parse("tel:" + number);
                 Intent surf = new Intent(Intent.ACTION_CALL, call);
                 startActivity(surf);
+            }
+        });
 
-                            }
-                        });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+
+
+
 
 
 
@@ -593,7 +697,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     {
         double ampDiff = finishAmplitude - startAmplitude;
         Log.d("diff", "amplitude difference " + ampDiff);
-        return (ampDiff <= 5);
+        return (ampDiff <= 9);
     }
 
     private void promptSpeechInput() {
@@ -632,6 +736,11 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         switch (requestCode) {
             case REQ_CODE_SPEECH_INPUT: {
+                if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+                    Bitmap photo = (Bitmap) data.getExtras().get("data");
+                    //imageView.setImageBitmap(photo);
+                }
+
                 if (resultCode == RESULT_OK && null != data) {
                     //txtSpeechInput.setText(result.get(0));
 

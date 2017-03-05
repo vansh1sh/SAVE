@@ -12,10 +12,16 @@
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-<!--    <item
+  <item
         android:id="@+id/option_get_place"
-        android:title="@string/option_get_place"
-        android:icon="@drawable/ic_contacts24dp"
+        android:title="Setting"
+        android:icon="@drawable/ic_settings_black_24dp"
 
-        app:showAsAction="always"/>-->
+        app:showAsAction="always"/>
+  <item
+        android:id="@+id/report"
+        android:title="Report"
+        android:icon="@drawable/glasses"
+
+        app:showAsAction="always"/>
 </menu>
