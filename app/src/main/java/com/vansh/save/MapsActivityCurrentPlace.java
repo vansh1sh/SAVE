@@ -248,6 +248,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     public void onMapReady(GoogleMap map) {
         mMap = map;
         mMap.getUiSettings().setMapToolbarEnabled(false);
+        mMap.getUiSettings().setMyLocationButtonEnabled(false);
 
         try {
             // Customise the styling of the base map using a JSON object defined
