@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
@@ -28,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -109,9 +111,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
         getWindow().setStatusBarColor(Color.TRANSPARENT);
 
-
-
-
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
         relativeLayout = (RelativeLayout) findViewById( R.id.LayoutBG);
@@ -120,6 +119,21 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         textSpeach = (FloatingActionButton) findViewById(R.id.btnSpeak);
 
         mSensor = new SoundMeter();
+
+
+        final VideoView videoView =
+                (VideoView) findViewById(R.id.myvid);
+        String uriPath = "android.resource://"+getPackageName()+"/"+R.raw.h;
+        videoView.setVideoPath(uriPath);
+
+        videoView.start();
+
+        videoView.setOnPreparedListener (new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                mp.setLooping(true);
+            }
+        });
 
 
         textSpeach.setOnClickListener(new View.OnClickListener() {
