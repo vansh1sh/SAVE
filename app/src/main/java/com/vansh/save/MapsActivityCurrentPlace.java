@@ -327,6 +327,18 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             }
 
 
+        if (item.getItemId() == R.id.dev) {
+            final Dialog dialog2 = new Dialog(MapsActivityCurrentPlace.this);
+            dialog2.setCanceledOnTouchOutside(true);
+            dialog2.setContentView(R.layout.dialog_filter6);
+
+            dialog2.show();
+            Button repo = (Button) dialog2.findViewById(R.id.upload);
+
+
+
+        }
+
 
 
 
