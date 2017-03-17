@@ -1,10 +1,8 @@
 package com.vansh.save;
 
-import android.*;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +12,6 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -27,12 +24,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,7 +36,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.VideoView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -62,7 +55,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.vansh.save.customwidgets.DialogUtil;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -81,7 +73,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     private ImageView imageView;
     private static final int CAMERA_REQUEST = 1888;
 
-    private FloatingActionButton textSpeach;
+    private FloatingActionButton textSpeech;
     private CameraPosition mCameraPosition;
     String no="7354273542";
     private SoundMeter mSensor;
@@ -141,8 +133,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         ImageView img3 = (ImageView) findViewById(R.id.img3);
         lll = (LinearLayout) findViewById(R.id.lll);
       //  txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
-        textSpeach = (FloatingActionButton) findViewById(R.id.btnSpeak);
-       // textSpeach.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.siren));
+        textSpeech = (FloatingActionButton) findViewById(R.id.btnSpeak);
+       // textSpeech.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.siren));
 
        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.h241);
         tool.setNavigationIcon(drawable);
@@ -220,16 +212,14 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
 
 
-        textSpeach.setOnClickListener(new View.OnClickListener() {
+        textSpeech.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
+                promptSpeechInput();
 
-                recordClap();
 
-                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
-                startActivity(i);*/
 
 
 
@@ -439,9 +429,10 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
                 == PackageManager.PERMISSION_GRANTED) {
             mLocationPermissionGranted = true;
+
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA, Manifest.permission.RECORD_AUDIO},
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
         /*
@@ -625,7 +616,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             mLocationPermissionGranted = true;
         } else {
             ActivityCompat.requestPermissions(this,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.RECORD_AUDIO, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE},
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
 
@@ -638,6 +629,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
             mLastKnownLocation = null;
         }
     }
+
+
     public void recordClap() {
 
 
@@ -701,15 +694,16 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     }
 
     private void promptSpeechInput() {
+
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                "Hi speak something");
+                "Say 'HELP' To Activate Danger Detection based on Amplitude of noise (Scream)");
         try {
             Snackbar snackbar = Snackbar
-                    .make(lll, "Checking For Any Unusual Sound...", Snackbar.LENGTH_LONG)
+                    .make(lll, "Listening...", Snackbar.LENGTH_LONG)
                     .setAction("Okay", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -755,6 +749,22 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
                         recordClap();
                     }
+                    else
+                    { Snackbar snackbar = Snackbar
+                                .make(lll, "Keyword 'Help' Not Detected", Snackbar.LENGTH_LONG)
+                                .setAction("Speak Again", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        promptSpeechInput();
+                                    }
+                                });
+                    snackbar.setActionTextColor(Color.RED);
+                    View sbView = snackbar.getView();
+                    TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                    textView.setTextColor(Color.YELLOW);
+                    sbView.setBackgroundColor(ContextCompat.getColor(this, R.color.bg_gradient_start));
+
+                    snackbar.show();}
                 }
                 break;
             }

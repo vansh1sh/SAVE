@@ -1,8 +1,6 @@
 package com.vansh.save;
 
 import android.Manifest;
-import android.net.Uri;
-import android.graphics.drawable.Drawable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,9 +9,7 @@ import java.util.Locale;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,7 +21,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private TextView txtSpeechInput;
-    private ImageView textSpeach, imageView;
+    private ImageView textSpeech, imageView;
 
     private final int REQ_CODE_SPEECH_INPUT = 100;
     private SoundMeter mSensor;
@@ -39,10 +35,10 @@ public class MainActivity extends AppCompatActivity {
         requestCameraPermission();
 
         txtSpeechInput = (TextView) findViewById(R.id.txtSpeechInput);
-        textSpeach = (ImageView) findViewById(R.id.btnSpeak);
+        textSpeech = (ImageView) findViewById(R.id.btnSpeak);
         imageView = (ImageView) findViewById(R.id.bgimg);
 
-        textSpeach.setOnClickListener(new View.OnClickListener() {
+        textSpeech.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -51,10 +47,11 @@ public class MainActivity extends AppCompatActivity {
                 Intent surf = new Intent(Intent.ACTION_CALL, call);
                 startActivity(surf);
 */
+                requestCameraPermission();
                 imageView.setImageResource(R.drawable.bg_gradient2);
 
-                //promptSpeechInput();
-                recordClap();
+                promptSpeechInput();
+                //recordClap();
 
 
             }
@@ -115,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT,
-                "Hi speak something");
+                "Say 'HELP' To Activate Danger Detection based on Amplitude of noise (Scream)");
         try {
             startActivityForResult(intent, REQ_CODE_SPEECH_INPUT);
         } catch (ActivityNotFoundException a) {
