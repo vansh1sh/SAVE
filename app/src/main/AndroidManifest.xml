@@ -28,7 +28,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC8pNtiRq9qL6-kg5Mj6_hDO4lsiHweIyg" />
 
-        <activity android:name=".MainActivity" />
         <activity
             android:name=".EmergencyActivity"
             android:label="@string/title_activity_emergency"
@@ -47,7 +46,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ParallaxActivity"></activity>
     </application>
 
 </manifest>

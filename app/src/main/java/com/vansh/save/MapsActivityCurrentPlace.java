@@ -13,6 +13,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
@@ -60,7 +61,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 /**
- * An activity that displays a map showing the place at the device's current location.
+ * An activity that displays a map showing the place at the device's current location with custom Markers and voice Recognition based on Amplitude.
  */
 public class MapsActivityCurrentPlace extends AppCompatActivity
         implements OnMapReadyCallback,
@@ -75,14 +76,14 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
     private FloatingActionButton textSpeech;
     private CameraPosition mCameraPosition;
-    String no="7354273542";
+    String no="100";
     private SoundMeter mSensor;
     private TextView txtSpeechInput;
     private final int REQ_CODE_SPEECH_INPUT = 100;
     // The entry point to Google Play services, used by the Places API and Fused Location Provider.
     private GoogleApiClient mGoogleApiClient;
 
-    // A default location (Sydney, Australia) and default zoom to use when location permission is
+    // A default location and default zoom to use when location permission is
     // not granted.
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
     private static final int DEFAULT_ZOOM = 15;
@@ -120,7 +121,8 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
-        getWindow().setStatusBarColor(Color.TRANSPARENT);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+
 
         // Retrieve the content view that renders the map.
         setContentView(R.layout.activity_maps);
@@ -142,22 +144,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         mSensor = new SoundMeter();
 
-
-        /*final VideoView videoView =
-                (VideoView) findViewById(R.id.myvid);
-        String uriPath = "android.resource://"+getPackageName()+"/"+R.raw.h;
-        videoView.setVideoPath(uriPath);
-
-        videoView.start();
-
-        videoView.setOnPreparedListener (new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
-*/
-
         img.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -168,8 +154,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.setContentView(R.layout.dialog_filter);
                 dialog.show();
-                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
-                startActivity(i);*/
+
 
 
 
@@ -185,8 +170,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.setContentView(R.layout.dialog_filterb);
                 dialog.show();
-                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
-                startActivity(i);*/
 
 
 
@@ -202,8 +185,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.setContentView(R.layout.dialog_filtera);
                 dialog.show();
-                /*Intent i = new Intent(MapsActivityCurrentPlace.this, ParallaxActivity.class);
-                startActivity(i);*/
 
 
 
@@ -241,10 +222,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
     }
-
-
-
-
 
     /**
      * Saves the state of the map when the activity is paused.
@@ -601,7 +578,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                         .title("Very Safe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 mMap.addMarker(new MarkerOptions()
                         .position(new LatLng(12.971604, 79.165172))
-                        .title("Deadly Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+                        .title("Safe Place").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
 
         }
 
@@ -630,7 +607,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
         }
     }
 
-
+//this function checks the mic input and determines the amplitude difference
     public void recordClap() {
 
 
@@ -690,7 +667,7 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
     {
         double ampDiff = finishAmplitude - startAmplitude;
         Log.d("diff", "amplitude difference " + ampDiff);
-        return (ampDiff <= 9);
+        return (ampDiff <= 9); //change the sensitivity of triggering the danger alert dialog box
     }
 
     private void promptSpeechInput() {
@@ -739,8 +716,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                     //txtSpeechInput.setText(result.get(0));
 
 
-
-
                     ArrayList<String> result = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
@@ -763,7 +738,6 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
                     TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
                     textView.setTextColor(Color.YELLOW);
                     sbView.setBackgroundColor(ContextCompat.getColor(this, R.color.bg_gradient_start));
-
                     snackbar.show();}
                 }
                 break;
@@ -771,10 +745,5 @@ public class MapsActivityCurrentPlace extends AppCompatActivity
 
         }
     }
-
-
-
-
-
 }
 
