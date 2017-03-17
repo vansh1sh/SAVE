@@ -13,15 +13,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
   <item
-        android:id="@+id/option_get_place"
-        android:title="Setting"
-        android:icon="@drawable/ic_settings_black_24dp"
+      android:id="@+id/dev"
+      android:title="Report"
+      android:icon="@drawable/developer"
 
-        app:showAsAction="always"/>
+      app:showAsAction="always"/>
   <item
         android:id="@+id/report"
         android:title="Report"
-        android:icon="@drawable/glasses"
+        android:icon="@drawable/glass"
 
         app:showAsAction="always"/>
+  <item
+      android:id="@+id/option_get_place"
+      android:title="Setting"
+      android:icon="@drawable/ic_settings_black_24dp"
+
+      app:showAsAction="always"/>
 </menu>
